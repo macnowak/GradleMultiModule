@@ -6,14 +6,18 @@ allprojects {
 	apply plugin: 'groovy'
 	apply plugin: 'maven'
 
+
 	repositories {
 		mavenCentral()
 		maven {
 			url "http://localhost:8081/nexus/content/groups/public"
 		}
 	}
-}
 
+
+
+}
+apply plugin: 'net.researchgate.release'
 
 buildscript {
 	ext {
@@ -33,7 +37,7 @@ buildscript {
 	}
 }
 
-apply plugin: 'net.researchgate.release'
+
 
 subprojects {
 	sourceCompatibility = 1.8
@@ -69,8 +73,7 @@ uploadArchives {
 	}
 }
 
-afterReleaseBuild.dependsOn uploadArchives
 
-subprojects.each {
-	project(it.name).release
-}
+beforeReleaseBuild.dependsOn subprojects.install
+//afterReleaseBuild.dependsOn { subprojects.uploadArchive }
+afterReleaseBuild.dependsOn uploadArchives
