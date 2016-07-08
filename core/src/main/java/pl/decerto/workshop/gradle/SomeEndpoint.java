@@ -9,7 +9,7 @@ import pl.decerto.workshop.elastic.SearchService;
 
 @Slf4j
 @RestController
-@RequestMapping(path = "sample")
+@RequestMapping(path = "sample2")
 public class SomeEndpoint {
 
 	private SearchService searchService;

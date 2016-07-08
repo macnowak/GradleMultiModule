@@ -4,9 +4,13 @@ allprojects {
 
 	apply plugin: 'java'
 	apply plugin: 'groovy'
+	apply plugin: 'maven'
 
 	repositories {
 		mavenCentral()
+		maven {
+			url "http://localhost:8081/nexus/content/groups/public"
+		}
 	}
 }
 
@@ -52,3 +56,18 @@ subprojects {
 
 	}
 }
+
+uploadArchives {
+	repositories {
+		mavenDeployer {
+			repository(url: "http://localhost:8081/repository/maven-releases/") {
+				authentication(userName: "admin", password: "admin123")
+			}
+			pom.version = version
+			pom.artifactId = project.name
+			pom.groupId = group
+		}
+	}
+}
+
+afterReleaseBuild.dependsOn uploadArchives
