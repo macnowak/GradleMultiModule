@@ -1,0 +1,5 @@
+rootProject.name = 'GradleMultiModule'
+include 'quartz'
+include 'elastic'
+include 'core'
+

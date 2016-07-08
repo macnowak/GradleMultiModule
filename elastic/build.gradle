@@ -1,0 +1,5 @@
+dependencies {
+	compile('org.projectlombok:lombok')
+	compile('org.slf4j:slf4j-api')
+	compile('org.springframework:spring-context')
+}

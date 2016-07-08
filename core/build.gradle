@@ -1,0 +1,28 @@
+apply plugin: 'spring-boot'
+apply plugin: 'war'
+
+
+war {
+	baseName = war_name
+	version = version
+}
+
+sourceCompatibility = 1.8
+
+dependencies {
+	compile project(':elastic')
+	compile project(':quartz')
+	compile('org.springframework.boot:spring-boot-starter-actuator')
+	compile('org.springframework.boot:spring-boot-starter-data-jpa')
+	compile('org.springframework.boot:spring-boot-devtools')
+	compile('org.springframework.boot:spring-boot-starter-jersey')
+	compile('org.projectlombok:lombok')
+	compile('org.springframework.boot:spring-boot-starter-web')
+	runtime('org.hsqldb:hsqldb')
+	providedRuntime('org.springframework.boot:spring-boot-starter-tomcat')
+	compile 'org.codehaus.groovy:groovy-all'
+	testCompile 'org.spockframework:spock-core'
+	testCompile 'org.spockframework:spock-spring'
+	testRuntime 'cglib:cglib-nodep'
+	testCompile('org.springframework.boot:spring-boot-starter-test')
+}
